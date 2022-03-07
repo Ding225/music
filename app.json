@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/index/index",
+    "pages/login/login",
     "pages/personal/personal",
+    "pages/index/index",
     "pages/video/video"
+    
   ],
   "style": "v2",
   "sitemapLocation": "sitemap.json",
@@ -12,7 +14,11 @@
     "navigationBarTitleText": "海洋云音乐"
   },
   "tabBar": {
-    "list": [{
+    "color": "#333",
+    "selectedColor": "#d43c33",
+    "backgroundColor": "#fff",
+    "list": [
+      {
         "pagePath": "pages/index/index",
         "text": "主页",
         "iconPath": "/static/images/tabs/tab-home.png",
