@@ -12,6 +12,7 @@
   //   4) 密码不正确返回给前端提示密码不正确
   //   5) 密码正确返回给前端数据，提示用户登录成功(会携带用户的相关信息)
 
+
 import request from '../../utils/request'
 Page({
 
@@ -83,9 +84,17 @@ Page({
     //后端验证
     let result = await request('/login/cellphone',{phone,password})
 
-    if(result.code === 200){
+    if(result.code === 200){ //登录成功
       wx.showToast({
         title:'登录成功',
+      })
+
+      //将用户的信息存储在本地
+      wx.setStorageSync('userInfo', JSON.stringify(result.profile))
+            
+      //跳转至个人中心personal页面
+      wx.reLaunch({
+        url: '/pages/personal/personal',
       })
     }else if(result.code === 400){
       wx.showToast({
