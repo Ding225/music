@@ -82,12 +82,12 @@ Page({
 
     
     //后端验证
-    let result = await request('/login/cellphone',{phone,password})
-
+    let result = await request('/login/cellphone',{phone,password ,isLogin:true});
     if(result.code === 200){ //登录成功
       wx.showToast({
         title:'登录成功',
       })
+      
 
       //将用户的信息存储在本地
       wx.setStorageSync('userInfo', JSON.stringify(result.profile))
