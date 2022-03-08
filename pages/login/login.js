@@ -11,6 +11,8 @@
   //   3) 用户存在需要验证密码是否正确
   //   4) 密码不正确返回给前端提示密码不正确
   //   5) 密码正确返回给前端数据，提示用户登录成功(会携带用户的相关信息)
+
+import request from '../../utils/request'
 Page({
 
   /**
@@ -40,7 +42,7 @@ Page({
 
 
   //登录的回调
-  login(){
+   async login(){
     // 1.收集表单数据
     let {phone, password} = this.data;
     // 2.前端验证
@@ -77,10 +79,30 @@ Page({
       return;
     }
 
-    wx.showToast({
-      title:'前端验证通过'
-    })
+    
+    //后端验证
+    let result = await request('/login/cellphone',{phone,password})
 
+    if(result.code === 200){
+      wx.showToast({
+        title:'登录成功',
+      })
+    }else if(result.code === 400){
+      wx.showToast({
+        title:'手机号错误',
+        icon:'none'
+      })
+    }else if(result.code === 502){
+      wx.showToast({
+        title:'密码错误',
+        icon:'none'
+      })
+    }else {
+      wx.showToast({
+        title:'登录失败，请重新登录',
+        icon:'none'
+      })
+    }
   },
 
   /**
