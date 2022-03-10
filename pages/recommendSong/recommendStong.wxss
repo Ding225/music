@@ -50,9 +50,15 @@
 }
 
 /* 内容区 */
+
+.listScroll{
+    height: calc(100vh - 380rpx);
+}
+
 .scrollItem{
     position: relative;
     display: flex;
+    margin-bottom: 20rpx;
 }
 
 .scrollItem image{
@@ -65,12 +71,17 @@
     display: flex;
     flex-direction: column;
     margin-left: 20rpx;
+    
 }
 
 .musicInfo text{
     height: 40rpx;
     line-height: 40rpx;
     font-size: 24rpx;
+    max-width: 400rpx;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .scrollItem  .iconfont {

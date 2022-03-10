@@ -26,6 +26,86 @@
                 </view>
                 <text class="iconfont icon-gengduo"></text>
             </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
+            <view class="scrollItem">
+                <image src="/static/images/nvsheng.jpg"></image>
+                <view class="musicInfo">
+                    <text class="musicName">追光者</text>
+                    <text class="author">多余的解释</text>
+                </view>
+                <text class="iconfont icon-gengduo"></text>
+            </view>
         </scroll-view>
     </view>
 </view>
