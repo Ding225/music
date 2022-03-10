@@ -1,11 +1,10 @@
 {
   "pages": [
+    "pages/recommendSong/recommendStong",
     "pages/video/video",
     "pages/login/login",
-    
     "pages/personal/personal",
     "pages/index/index"
-   
     
   ],
   "style": "v2",
