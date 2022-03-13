@@ -1,6 +1,7 @@
 App({
   globalData:{
-    
+    isMusicPlay:false, //标识音乐在播放
+    musicId:''  //音乐id
   },
 
   /**

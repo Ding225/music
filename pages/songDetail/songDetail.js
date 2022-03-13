@@ -1,5 +1,10 @@
 
+import PubSub from 'pubsub-js'
+
+
 import request from '../../utils/request'
+//获取全局实例
+const appInstance  = getApp();
 Page({
 
   /**
@@ -9,6 +14,7 @@ Page({
     isPlay:false,  //音乐是否在播放
     song:{},  //歌曲详情对象
     musicId:'', //音乐id
+    musicLink:''  //音乐的连接
   },
 
   /**
@@ -29,12 +35,25 @@ Page({
     // 解决方案：
     //        1.通过控制音频的实例  BackgroundAudioManager 去监听音乐播放/暂停
 
+
+      
+    //判断当前音乐是否在播放
+    if(appInstance.globalData.isMusicPlay && appInstance.globalData.musicId === musicId){
+      //修改当前页面音乐播放状态为true
+      this.setData({
+        isPlay:true
+      })
+    }
+
+
     //创建控制音乐播放的实例
     this.BackgroundAudioManager = wx.getBackgroundAudioManager();
 
     //监听音乐播放/暂停/停止
     this.BackgroundAudioManager.onPlay(() => {
       this.changePlayState(true);
+      //修改全局音乐播放状态
+      appInstance.globalData.musicId = musicId;
     });
     this.BackgroundAudioManager.onPause(() => {
       this.changePlayState(false);
@@ -50,6 +69,9 @@ Page({
     this.setData({
       isPlay
     })
+
+    //修改全局音乐播放状态
+    appInstance.globalData.isMusicPlay = isPlay;
   },
 
   //获取音乐详情的功能函数
@@ -73,25 +95,55 @@ Page({
     // this.setData({
     //   isPlay
     // })
-    let {musicId} = this.data
-    this.musicControl(isPlay,musicId);
+    let {musicId,musicLink} = this.data
+    this.musicControl(isPlay,musicId,musicLink);
   },
 
   //控制音乐播放/暂停的功能函数
- async musicControl(isPlay,musicId){
+ async musicControl(isPlay,musicId,musicLink){
   
     if(isPlay){  //音乐播放
-      //获取音乐播放链接
-      let musicLinkData = await request('/song/url',{id:musicId})
-      let musicLink = musicLinkData.data[0].url;
+      if(!musicLink){
+        //获取音乐播放链接
+        let musicLinkData = await request('/song/url',{id:musicId})
+        musicLink = musicLinkData.data[0].url;
+      }
       
-      
+      this.setData({
+        musicLink
+      })
       
       this.BackgroundAudioManager.src = musicLink;
       this.BackgroundAudioManager.title = this.data.song.name;
     }else{  //暂停音乐
       this.BackgroundAudioManager.pause();
     }
+  },
+
+
+  //点击切歌的回调
+  handleSwitch(event){
+    //获取切歌的类型
+    let type = event.currentTarget.id;
+
+    //关闭当前播放音乐
+    this.BackgroundAudioManager.stop()
+
+
+    //订阅来自recommendSong页面发布的musicId消息
+    PubSub.subscribe('musicId',(msg,musicId) => {
+
+      //获取音乐详情信息
+      this.getMusicInfo(musicId);
+
+      //自动播放当前音乐
+      this.musicControl(true,musicId);
+
+      //取消订阅
+      PubSub.unsubscribe('musicId');
+    })
+    //将musicId回传给songDetail页面
+    PubSub.publish('switchType',type)
   },
 
   /**
