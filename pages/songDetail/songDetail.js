@@ -1,8 +1,7 @@
 
 import PubSub from 'pubsub-js'
-
-
 import request from '../../utils/request'
+import moment from 'moment';
 //获取全局实例
 const appInstance  = getApp();
 Page({
@@ -14,7 +13,10 @@ Page({
     isPlay:false,  //音乐是否在播放
     song:{},  //歌曲详情对象
     musicId:'', //音乐id
-    musicLink:''  //音乐的连接
+    musicLink:'' , //音乐的连接
+    currentTime:'00:00',  //实时时间
+    durationTime:'00:00' , //总时长
+    currentWidth:0, //实时进度条的宽度
   },
 
   /**
@@ -61,6 +63,29 @@ Page({
     this.BackgroundAudioManager.onStop(() => {
       this.changePlayState(false);
     });
+    // 监听音乐播放自然结束
+    this.BackgroundAudioManager.onEnded(() => {
+      // 自动切换至下一首音乐，并自动播放
+      PubSub.publish('switchType','next')
+      // 将实时进度条还原成0 时间还原成0
+      this.setData({
+        currentWidth:0,
+        currentTime:'00:00'
+      })
+    });
+
+    // 监听音乐实时播放的进度
+    this.BackgroundAudioManager.onTimeUpdate(() => {
+      // 格式化实时播放时间
+      let currentTime = moment(this.BackgroundAudioManager.currentTime * 1000).format('mm:ss')
+      let currentWidth = this.BackgroundAudioManager.currentTime/this.BackgroundAudioManager.duration * 450;
+
+
+      this.setData({
+        currentTime,
+        currentWidth
+      })
+    })
   },
 
   //修改播放状态的功能函数
@@ -78,8 +103,12 @@ Page({
 
   async getMusicInfo(musicId){
     let songData = await request('/song/detail',{ids:musicId})
+
+    let durationTime = moment(songData.songs[0].dt).format('mm:ss')
+
     this.setData({
-      song:songData.songs[0]
+      song:songData.songs[0],
+      durationTime
     })
     //动态修改窗口标题
     wx.setNavigationBarTitle({
