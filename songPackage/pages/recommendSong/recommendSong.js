@@ -1,6 +1,6 @@
 // pages/recommendSong/recommendStong.js
 import PubSub from 'pubsub-js'
-import request from '../../utils/request'
+import request from '../../../utils/request'
 Page({
 
   /**
@@ -92,7 +92,7 @@ Page({
     wx.navigateTo({
       //不能直接将song对象作为参数传递，长度过长，会被自动截取
       //url: '/pages/songDetail/songDetail?song=' + JSON.stringify(song),
-      url: '/pages/songDetail/songDetail?musicId=' + song.id
+      url: '/songPackage/pages/songDetail/songDetail?musicId=' + song.id
     })
   },
   

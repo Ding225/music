@@ -2,12 +2,9 @@
   "pages": [
     "pages/index/index",
     "pages/search/search",
-    "pages/recommendSong/recommendSong",
-    "pages/songDetail/songDetail",
     "pages/video/video",
     "pages/login/login",
     "pages/personal/personal"
-    
     
   ],
   "style": "v2",
@@ -44,5 +41,20 @@
   },
   "requiredBackgroundModes": [
     "audio"
+  ],
+  "subpackages":[
+    {
+      "root":"songPackage",
+      "pages":[
+        "pages/recommendSong/recommendSong",
+        "pages/songDetail/songDetail"
+      ]
+    },
+    {
+      "root":"otherPackage",
+      "pages":[
+        "pages/other/other"
+      ]
+    }
   ]
 }
