@@ -97,8 +97,8 @@ this.setData({
     //创建控制video标签的实例对象
  this.videoContext = wx.createVideoContext(vid );
  //判断当前的视频之前是否播放过，是否有播放记录，如果有，跳转至指定的播放位置
-let {videoUpdataTime} = this.data;
-let videoItem = videoUpdataTime.find(item => item.vid === vid);
+let {videoUpdateTime} = this.data;
+let videoItem = videoUpdateTime.find(item => item.vid === vid);
 if(videoItem){
   this.videoContext.seek(videoItem.currentTime);
 }
@@ -117,7 +117,7 @@ handleTimeUpdate(event){
   if(videoItem){  //之前有
     videoItem.currentTime = videoTimeObj.currentTime;
   }else{
-    videoUpdataTime.push(videoTimeObj);
+    videoUpdateTime.push(videoTimeObj);
   };
   //统一更新videoUpdateTime的状态
   this.setData({
@@ -127,10 +127,10 @@ handleTimeUpdate(event){
 //视频播放结束调用的回调
 hanleEnded(event){
   //移除记录播放时长数组中当前视频的对象
-  let {videoUpdataTime} = this.data;
-  videoUpdataTime.splice(videoUpdataTime.findIndex(item => item.vid === event.currentTarget.id),1)
+  let {videoUpdateTime} = this.data;
+  videoUpdateTime.splice(videoUpdateTime.findIndex(item => item.vid === event.currentTarget.id),1)
   this.setData({
-    videoUpdataTime
+    videoUpdateTime
   })
 },
 
