@@ -1,7 +1,7 @@
 # music
 
 海洋云音乐
-# 2.0版本修改了Bug
+# 2.0版本修复了Bug
 https://github.com/Ding225/music2.0.git
 
 # 后端地址
