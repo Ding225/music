@@ -18,10 +18,10 @@
       <view class="tit">
         <!-- 会员图标-->
         <text class="iconfont icon-huiyuan-"></text>
-        硅谷会员
+        网易云会员
       </view>
-      <text class="e-m">atguigu Union</text>
-      <text class="e-b">开通会员听歌, 撸代码</text>
+      <text class="e-m">听音乐</text>
+      <text class="e-b">写bug</text>
     </view>
   </view>
 
