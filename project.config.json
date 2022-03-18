@@ -47,7 +47,7 @@
     "ignoreUploadUnusedFiles": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.14.1",
+  "libVersion": "2.16.1",
   "appid": "wx149b83cefd1190db",
   "projectname": "yingyue",
   "debugOptions": {
